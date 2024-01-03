@@ -1,0 +1,196 @@
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  cursor: none;
+}
+a{
+  cursor: none;
+}
+@font-face {
+  font-family: Cabinet Grotesk;
+  src: url(./fonts/CabinetGrotesk-Variable.ttf);
+  font-weight: 100 900;
+}
+@font-face {
+  font-family: Bodoni Moda;
+  src: url(./fonts/BodoniModa-Variable.ttf);
+  font-weight: 400 900;
+}
+
+:root {
+  --light: #eae3d7;
+  --dark: #090909;
+
+  --color-text: var(--dark);
+  --color-bg: var(--light);
+
+  --fw-thin: 100;
+  --fw-extralight: 200;
+  --fw-light: 300;
+  --fw-regular: 500;
+  --fw-medium: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+  --fw-black: 900;
+
+  --fs-nav-logo: 4rem;
+  --fs-nav-logo-home: 8rem;
+  --fs-nav-link: 2rem;
+
+  --pad-nav-top: 3.125rem;
+  --pad-nav-x: 5rem;
+  --pad-main-x: 5rem;
+
+  --ff-primary: Cabinet Grotesk;
+  --ff-secondary: Bodoni Moda;
+
+  --trans-classic: all 0.3s ease;
+
+  --opz: 11;
+}
+
+::selection {
+  color: var(--light);
+  background-color: var(--dark);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-text: var(--light);
+    --color-bg: var(--dark);
+    --opz: 50;
+    --fw-regular: 400;
+    --fw-medium: 500;
+  }
+  ::selection {
+    color: var(--dark);
+    background-color: var(--light);
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  :root {
+    --pad-nav-top: 2rem;
+    --pad-nav-x: 3rem;
+    --pad-main-x: 3rem;
+  }
+}
+@media screen and (max-width: 1000px) {
+  :root {
+    --fs-nav-logo: 4rem;
+    --fs-nav-link: 4rem;
+  }
+}
+@media screen and (max-width: 800px) {
+  :root {
+    --pad-nav-top: 1rem;
+    --pad-nav-x: 2rem;
+    --pad-main-x: 2rem;
+    --fs-nav-logo: 3rem;
+  }
+}
+
+body {
+  font-family: var(--ff-primary), sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-variation-settings: "opsz" var(--opz);
+  font-weight: var(--fw-regular);
+}
+
+.cursor {
+  background-color: var(--color-text);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  translate: -50% -50%;
+  z-index: 100;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  transition: .05s;
+}
+
+.not-text-link {
+  text-decoration: none;
+  color: var(--color-text);
+}
+.link-hover {
+  font-size: 1.2rem;
+  font-weight: 600;
+  position: relative;
+  width: fit-content;
+}
+.link-hover::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--color-text);
+  scale: 0 1;
+  transform-origin: right;
+  transition: scale 0.4s;
+  will-change: transform;
+}
+.link-hover:hover::before,
+.router-link-exact-active::before {
+  scale: 1;
+  transform-origin: left;
+}
+.link-svg {
+  display: inline-flex;
+  align-items: center;
+}
+.link-svg svg {
+  height: 0.8rem;
+  width: 0;
+  opacity: 0;
+  transition: var(--trans-classic);
+}
+.link-svg:hover svg {
+  width: auto;
+  opacity: 1;
+  margin-left: 0.5rem;
+}
+.secondary-font {
+  font-family: var(--ff-secondary), serif;
+}
+.italic {
+  font-style: italic;
+}
+.click-btn {
+  border: 1px solid var(--color-text);
+  border-radius: 99px;
+  text-transform: uppercase;
+  font-family: var(--ff-secondary);
+  font-style: italic;
+  padding: 0 1rem;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  transition: var(--trans-classic);
+}
+.click-btn svg {
+  height: 0.9rem;
+  width: 0;
+  opacity: 0;
+  transition: var(--trans-classic);
+}
+.click-btn:hover {
+  background-color: var(--color-text);
+  color: var(--color-bg);
+  font-variation-settings: "opsz" 8;
+  font-weight: var(--fw-bold);
+}
+.click-btn:hover svg {
+  width: auto;
+  margin-left: 0.7rem;
+  opacity: 1;
+}
